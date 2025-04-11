@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+}
+:root {
+    --hero-bgcolor: #1F2937;
+    --hero-txt-size: 48px;
+    --logo-text-s: 24px;
+    --subp-color: #E5E7EB;
+    --subp-size: 18px;
+    --logo-color: #F9FAF8;
+    --btn-bgcolor: #3882F6;
+    --btn-size: 16px;
+    --h2: 36px;
+    --h2-clr: #1F2937;
+    --h2-weight: 900;
+    --quote-bg: #E5E7EB;
+    --quote-txt: 36px;
+    --quote-style: italic;
+    --quote-txt-color: #1f2937;
+}
+.navbar-div {
+    display: flex;
+    background-color: var(--hero-bgcolor);
+    padding: 20px 40px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid darkgrey;
+    flex-wrap: wrap;
+}
+.nav-logo {
+    color: var(--logo-color);
+    font-size: var(--logo-text-s);
+    flex: 1;
+}
+.nav-items {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to stack if there's not enough space */
+    justify-content: flex-end; /* Align navigation items to the right */
+}
+
+.nav-items ul{
+    display: flex;
+    gap: clamp(0.5rem, -0.214rem + 1.905vw, 1.5rem);
+    list-style: none;
+    /* justify-content: center;
+    align-items: center; */
+}
+.nav-items ul li a{
+    display: inline-block;
+    text-decoration: none;
+    color: var(--logo-color);
+    padding: 10px 20px;
+    border-radius: 8px;
+
+}
+.nav-items ul a:hover{
+    text-decoration: underline;
+    color: var(--hero-bgcolor);
+    background-color: var(--quote-bg);
+}
+
+
+/* styling for hero container */
+.hero-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 80vh;
+    background-color: var(--hero-bgcolor);
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 60px 20px;
+}
+.hero-container .left-cont {
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* margin-bottom: 1rem; */
+    /* justify-content: space-around;
+    /* align-items: center; */ 
+    /* flex: 1; */
+}
+.left-cont p{
+    margin-top: 20px;
+}
+.hero-btn {
+    display: inline-block;
+    max-width: fit-content;
+    text-align: center;
+    margin-top: 18px;
+    background-color: var(--btn-bgcolor);
+    font-size: var(--btn-size);
+    color: var(--quote-bg);
+    padding: 14px 38px;
+    border: 0px solid transparent;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+
+}
+.hero-btn:hover{
+    background-color: var(--quote-bg);
+    color: var(--h2-clr);
+}
+
+.left-cont .hero-title{
+    font-size: var(--hero-txt-size);
+    color: var(--logo-color);
+
+}
+.left-cont .hero-subheadline {
+    color: var(--subp-color);
+    font-size: var(--subp-size);
+    width: 46ch;
+}
+.hero-container .right-cont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+.hero-img {
+    max-width: 600px;
+    max-height: 600px;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .hero-container{
+        flex-direction: column;
+    }
+    .hero-container .left-cont{
+        min-height: 60vh;
+        justify-content: center;
+        padding: 40px 10px;
+    }
+    .hero-container .right-cont {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+    .right-cont .hero-img{
+        max-width: 100%;
+        align-self: center;
+    }
+}
+/* Services  Cards */
+
+.services {
+    /* display: flex;
+    flex-direction: column; */
+    padding: 40px 20px;
+    background-color: var(--logo-color);
+    min-height: 60vh;
+}
+.services .services-h2{
+    font-size: var(--h2);
+}
+.services .services-h2, .services-txt {
+    text-align: center;
+   }
+.services-txt {
+       margin-top: 10px;
+      }
+      /* Here I am using flex but next I want to use Subgrid */
+/* .services .services-cards {
+    display: flex;
+    padding: 20px 30px;
+    gap: 1rem;
+}
+.services-cards .card{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: var(--quote-bg);
+    padding: 12px 18px;
+    border-radius: 14px;
+    flex: 1;
+    min-height: fit-content;
+} */
+
+/* Here I am using Subgrid technique currenlty Global 91.83%*/
+.services-cards {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+grid-template-rows: auto auto 1fr auto; /* header, text, filler, button */
+gap: 2rem;
+padding: 20px 30px;
+}
+.services-cards .card{
+        display: grid;
+        grid-template-rows: subgrid;
+        grid-row: span 3; /* same number of rows as the container */
+        padding: 20px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        margin-top: 2rem;
+}
+
+.services-cards .card-title-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: flex-start;
+}
+.card-title-wrapper i {
+    font-size: 48px;
+}
+.services-cards .card > p {
+    margin-bottom: 24px;
+}
+.services-cards .card > h3 {
+    min-height: 3rem;
+    font-size: var(--subp-size);
+    margin-bottom: 10px;
+}
+
+.services-btn {
+    font-size: var(--btn-size);
+    padding: 16px 24px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--hero-bgcolor);
+    color: var(--logo-color);
+    /* margin-top: auto; */
+    align-self: stretch;
+    transition: background-color 0.2s, color 0.2s;
+    cursor: pointer;
+}
+.services-btn:hover {
+    background-color: var(--btn-bgcolor);
+    color: var(--subp-color);
+}
+/* Blockquote Styling */
+.quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    text-align: center;
+    min-height: 50vh;
+    background-color: var(--quote-bg);
+    
+}
+.quote .qt-text{
+    font-size: var(--quote-txt);
+    max-width: 800px;
+}
+.quote footer {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-style: normal;
+    align-self: center;
+  }
+  /* End of Blockquote styling */
+.cta-container {
+    display: flex; 
+    align-items: center;
+    min-height: 50vh;
+    justify-content: center;
+    padding: 20px;
+
+}
+.cta-wrapper{
+    background-color: var(--btn-bgcolor);
+    /* margin: 40px 30px; */
+    max-width: 1000px;
+    width: 100%;
+    padding: 40px;
+    gap: 2rem;
+    border: none;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.cta-text {
+    max-width: 500px;
+}
+.cta-wrapper h3 {
+    font-size: var(--h2);
+    color: var(--logo-color);
+}
+.cta-wrapper p{
+    font-size: var(--subp-size);
+    color: var(--logo-color);
+}
+.cta-wrapper .cta-btn {
+    font-size: var(--btn-size);
+    color: var(--h2-clr);
+    background-color: var(--logo-color);
+    border: 1px solid white;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: border 0.2s, color 0.2s;
+}
+.cta-wrapper .cta-btn:hover {
+    border: 1px solid var(--h2-clr);
+
+}
+
+.footer {
+    background-color: var(--hero-bgcolor);
+    color: var(--logo-color);
+    font-size: var(--subp-size);
+    text-align: center;
+    padding: 30px 60px;
+}
+
